@@ -57,7 +57,7 @@ function handleRowSubmission() {
     }
 
     if (globals.currentRow == globals.maxRowsGrid - 1) {
-        alert("Sorry, you lost the game bro. 😿");
+        alert(`The word was "${actualWord}". Sorry, you lost the game bro. 😿`);
 
         clearGrid();
         globals = resetGlobals();

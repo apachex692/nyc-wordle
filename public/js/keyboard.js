@@ -4,8 +4,8 @@
  */
 const keyboardRows = [
     ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P'],
-    ['A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L', "BACK"],
-    ['Z', 'X', 'C', 'V', 'B', 'N', 'M', "ENTER"]
+    ['A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L', '⬅️'],
+    ['Z', 'X', 'C', 'V', 'B', 'N', 'M', '➡️']
 ];
 
 function renderKeyboard() {
@@ -14,12 +14,12 @@ function renderKeyboard() {
     for (let keyboardRowIndex = 0; keyboardRowIndex < 3; keyboardRowIndex++) {
         let newKeyboardRow = document.createElement("div");
 
-        newKeyboardRow.classList.add("d-flex", "flex-row");
+        newKeyboardRow.classList.add("d-flex", "flex-row", "flex-wrap");
 
         keyboardRows[keyboardRowIndex].forEach(function (value) {
             let newKey = document.createElement("div");
 
-            newKey.classList.add("btn", "btn-success", "m-1");
+            newKey.classList.add("btn", "btn-secondary", "m-1");
             newKey.textContent = value;
             newKey.style.minWidth = "40px";
             newKey.id = 'k';
@@ -37,12 +37,12 @@ function handleKeyboardClick(event) {
     if (elementClicked.id != 'k')
         return;
 
-    if (elementClicked.textContent == "ENTER") {
+    if (elementClicked.textContent == "➡️") {
         handleRowSubmission();
         return;
     }
 
-    if (elementClicked.textContent == "BACK") {
+    if (elementClicked.textContent == "⬅️") {
         handleBackButtonEvent();
         return;
     }
@@ -53,7 +53,31 @@ function handleKeyboardClick(event) {
     addLetterToRow(elementClicked.textContent);
 }
 
+function handleKeyboard(event) {
+    const key = event.key;
+
+    if (key == "Enter") {
+        handleRowSubmission();
+        return;
+    }
+
+    if (key == "Backspace") {
+        handleBackButtonEvent();
+        return;
+    }
+
+    if (key.length != 1)
+        return;
+
+    if (globals.currentCursorPosition == 5)
+        return;
+
+    addLetterToRow(key.toUpperCase());
+}
+
 renderKeyboard();
 
 document.getElementById("keyboard")
     .addEventListener("click", handleKeyboardClick);
+
+document.addEventListener("keydown", handleKeyboard);

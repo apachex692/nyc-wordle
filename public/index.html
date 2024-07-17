@@ -5,12 +5,43 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Wordle</title>
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="./assets/favicon-16x16.png">
+  <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="./assets/apple-touch-icon.png">
+  <link rel="icon" type="image/icon" href="./assets/favicon.ico">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
     integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <style>
+    @media screen and (max-width: 600px) {
+      #keyboard {
+        display: none !important;
+      }
+      hr {
+        display: none;
+      }
+    }
+  </style>
 </head>
 
-<body class="bg-black d-none mx-2">
-  <main class="mx-auto my-3" style="max-width: 550px;">
+<body class="bg-black d-none">
+  <nav class="navbar bg-body-tertiary">
+    <div class="container">
+      <div class="navbar-brand">
+        <img src="./assets/favicon-32x32.png" alt="Logo" width="30" height="30"
+          class="d-inline-block border align-text-center rounded">
+      </div>
+      <div class="ms-auto">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" data-bs-toggle="modal" data-bs-target="#help-modal">
+              Help
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <main class="container mx-auto my-3" style="max-width: 550px;">
     <div class="bg-body border rounded p-3">
       <h1 class="text-center">Wordle</h1>
       <div id="grid" class="d-flex flex-column align-items-center fw-bold mb-3" style="font-size: 20px;">
@@ -20,15 +51,61 @@
       </div>
     </div>
   </main>
-  <footer class="text-center text-small text-muted mx-auto mb-3" style="max-width: 550px;">
-    This game is a rip-off of NYC's famous game Wordle.
-    <br>
-    Copyright NYC's Wordle, all rights reserved.
-  </footer>
+  <div class="modal fade" id="help-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="help-modal-label" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="help-modal-label">How to Play?</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p>
+            Wordle is a popular word puzzle game where the objective is to guess
+            a hidden five-letter word within six attempts. Here's how to play:
+          </p>
+          <p>
+            To start, enter any five-letter word as your first guess. After
+            submitting your guess, the game provides feedback with colored tiles:
+            green tiles indicate correct letters in the correct positions, yellow
+            tiles indicate correct letters in different positions, and gray tiles
+            indicate incorrect letters. Use this feedback to refine your
+            subsequent guesses and deduce the correct word.
+          </p>
+          <p>
+            Strategize by beginning with a common five-letter word to gauge
+            initial feedback. Adjust your guesses based on the colored tiles to
+            eliminate possibilities and hone in on the target word efficiently.
+            The game ends successfully if you guess the correct word within five
+            attempts. If you exhaust all attempts without guessing correctly, you
+            lose the game.
+          </p>
+          <p>
+            Wordle typically updates with a new puzzle each day, offering players
+            a fresh challenge. It's a game that tests your vocabulary and
+            deduction skills in a straightforward and engaging format.
+          </p>
+          <p>
+            This game is a rip-off of NYC's famous game Wordle. Copyright NYC's
+            Wordle, all rights reserved. Please don't sue me or bring this website
+            down. It's just a work assignment.
+          </p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">
+            I Accept I'm Dumb
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
   <script src="./js/globals.js"></script>
   <script src="./js/grid.js"></script>
   <script src="./js/keyboard.js"></script>
   <script src="./js/index.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+    integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+    crossorigin="anonymous"></script>
 </body>
 
 </html>
